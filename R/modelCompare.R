@@ -3,11 +3,12 @@ function(ModelC, ModelA)
 {
   sseC = sum(residuals(ModelC)^2)
   sseA = sum(residuals(ModelA)^2)
-
+  
   pC = length(coef(ModelC))
   pA = length(coef(ModelA))
   if (!(pA > pC))  stop('Invalid model comparison:  modelA does not have more parameters than modelC')
   
+  #Added the next three lines to check whether the terms in model C are a subset of the terms in model A
   termsC <- attr(terms(ModelC), "term.labels")
   termsA <- attr(terms(ModelA), "term.labels")
   
